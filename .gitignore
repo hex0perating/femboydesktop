@@ -1,0 +1,14 @@
+dwm/dwm 
+dwm/dwm.o
+dwm/drw.o
+dwm/motherfucker.o
+dwm/util.o
+dmenu/dmenu
+dmenu/dmenu.o
+dmenu/dmenu.o
+dmenu/drw.o 
+dmenu/stest.o 
+dmenu/util.o
+st/st.o
+st/st
+st/x.o 
