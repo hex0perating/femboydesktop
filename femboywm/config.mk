@@ -1,7 +1,7 @@
-# dwm version
-VERSION = 6.3
+# femboywm version, don't change!
+VERSION = 0.1
 
-# Customize below to fit your system
+# femboywm build options, feel free to change.
 
 # paths
 PREFIX = /usr/local

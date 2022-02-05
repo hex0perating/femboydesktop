@@ -1,4 +1,7 @@
 /* See LICENSE for license details. */
+
+// FIXME: Replace all references of st to ft/femboyterm.
+
 #include <ctype.h>
 #include <errno.h>
 #include <fcntl.h>
@@ -17,7 +20,7 @@
 #include <unistd.h>
 #include <wchar.h>
 
-#include "st.h"
+#include "ft.h"
 #include "win.h"
 
 #if   defined(__linux)

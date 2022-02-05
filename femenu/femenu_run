@@ -1,0 +1,2 @@
+#!/bin/sh
+femenu_path | femenu "$@" | ${SHELL:-"/bin/sh"} &
