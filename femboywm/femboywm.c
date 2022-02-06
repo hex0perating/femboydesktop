@@ -92,10 +92,10 @@ void genColors() {
 	}
 
 	colors[0][0] = parsedOpts[4];
-	colors[0][1] = parsedOpts[5];
-	colors[0][2] = parsedOpts[3];
-	colors[1][0] = parsedOpts[0];
-	colors[1][1] = parsedOpts[1];
+	colors[0][1] = parsedOpts[3];
+	colors[0][2] = parsedOpts[5];
+	colors[1][0] = parsedOpts[1];
+	colors[1][1] = parsedOpts[0];
 	colors[1][2] = parsedOpts[2];
 
 	//printf("map table r1: %s, %s, %s\nmap table r2: %s, %s, %s\n", colors[0][0], colors[0][1], colors[0][2], colors[1][0], colors[1][1], colors[1][2]);
