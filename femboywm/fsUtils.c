@@ -60,7 +60,7 @@ char *fsUtils_getConfPath() {
     struct passwd *pw = getpwuid(getuid());
     char *homeFile = pw->pw_dir;
 
-    strcat(homeFile, "/.config/femboyde/config.fem");
+    strcat(homeFile, "/.config/femboyde/femboywm.fem");
 
     return homeFile;
 }

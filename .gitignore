@@ -10,3 +10,4 @@ femenu/util.o
 femboyterm/ft.o
 femboyterm/ft
 femboyterm/x.o 
+femboywm/fsUtils.o

@@ -21,8 +21,8 @@
  * To understand everything else, start reading main().
  */
 
-// uwu
-#include <time.h>
+// Config stuff imported
+char *colors[][3] = { {"", "", ""}, {"", "", ""} };
 
 // normal stuff
 #include <errno.h>
@@ -41,6 +41,8 @@
 #include <X11/Xlib.h>
 #include <X11/Xproto.h>
 #include <X11/Xutil.h>
+#include <stdbool.h>
+
 #ifdef XINERAMA
 #include <X11/extensions/Xinerama.h>
 #endif /* XINERAMA */
@@ -48,6 +50,56 @@
 
 #include "drw.h"
 #include "util.h"
+#include "fsUtils.h"
+
+char *parsedOpts[6] = { NULL };
+
+bool startsWith(const char *a, const char *b) {
+    if(strncmp(a, b, strlen(b)) == 0) return 1;
+    return 0;
+}
+
+void parseConf() {
+    char *validOpts[] = {"femwm-background", "femwm-text-active", "femwm-border-active", "femwm-border-inactive", "femwm-text-inactive", "femwm-foreground"};
+
+    int size = sizeof validOpts / sizeof validOpts[0];
+
+    char *conf = fsUtils_getFileContents(fsUtils_getConfPath());
+    char *token = strtok(conf, "\n");
+
+    while (token != NULL) {
+        for (int i = 0; i < size; i++) {
+            if (startsWith(token, validOpts[i])) {
+                char *parsed = "";
+				strtok_r(token, "=", &parsed);
+
+                parsedOpts[i] = parsed;
+            }
+        }
+
+        token = strtok(NULL, "\n");
+    }
+
+	free(conf);
+}
+
+void genColors() {
+	if (fsUtils_fileExists(fsUtils_getConfPath())) {
+		parseConf();
+	} else {
+		fsUtils_replaceFileContents(fsUtils_getConfPath(), "# Welcome to FemboyWM!\n# This will be your doom.\n# Good luck!\n\nfemwm-background=#eeeeee\nfemwm-foreground=#a5d8ff\nfemwm-border-active=#F4E3B2\nfemwm-border-inactive=#c8e5fa\nfemwm-text-inactive=#999999\nfemwm-text-active=#050517");
+		parseConf();
+	}
+
+	colors[0][0] = parsedOpts[4];
+	colors[0][1] = parsedOpts[5];
+	colors[0][2] = parsedOpts[3];
+	colors[1][0] = parsedOpts[0];
+	colors[1][1] = parsedOpts[1];
+	colors[1][2] = parsedOpts[2];
+
+	//printf("map table r1: %s, %s, %s\nmap table r2: %s, %s, %s\n", colors[0][0], colors[0][1], colors[0][2], colors[1][0], colors[1][1], colors[1][2]);
+}
 
 /* macros */
 #define BUTTONMASK              (ButtonPressMask|ButtonReleaseMask)
@@ -1553,6 +1605,7 @@ setup(void)
 	drw = drw_create(dpy, screen, root, sw, sh);
 	if (!drw_fontset_create(drw, fonts, LENGTH(fonts)))
 		die("no fonts could be loaded.");
+	genColors(); // wtf?
 	lrpad = drw->fonts->h;
 	bh = drw->fonts->h + 2;
 	updategeom();
@@ -1999,7 +2052,7 @@ void
 updatestatus(void)
 {
 	if (!gettextprop(root, XA_WM_NAME, stext, sizeof(stext)))
-		strcpy(stext, "femboywm pre alpha");
+		strcpy(stext, "soon");
 	drawbar(selmon);
 }
 
@@ -2138,6 +2191,7 @@ zoom(const Arg *arg)
 int
 main(int argc, char *argv[])
 {
+	genColors();
 	if (argc == 2 && !strcmp("-v", argv[1]))
 		die("femboywm-"VERSION);
 	else if (argc != 1)
