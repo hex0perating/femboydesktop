@@ -60,7 +60,7 @@ bool startsWith(const char *a, const char *b) {
 }
 
 void parseConf() {
-    char *validOpts[] = {"femwm-background", "femwm-text-active", "femwm-border-active", "femwm-border-inactive", "femwm-text-inactive", "femwm-foreground"};
+    char *validOpts[] = {"femwm-background", "femwm-text-active", "femwm-border-active", "femwm-foreground", "femwm-text-inactive", "femwm-border-inactive"};
 
     int size = sizeof validOpts / sizeof validOpts[0];
 
@@ -92,13 +92,13 @@ void genColors() {
 	}
 
 	colors[0][0] = parsedOpts[4];
-	colors[0][1] = parsedOpts[3];
+	colors[0][1] = parsedOpts[0];
 	colors[0][2] = parsedOpts[5];
 	colors[1][0] = parsedOpts[1];
 	colors[1][1] = parsedOpts[0];
 	colors[1][2] = parsedOpts[2];
 
-	//printf("map table r1: %s, %s, %s\nmap table r2: %s, %s, %s\n", colors[0][0], colors[0][1], colors[0][2], colors[1][0], colors[1][1], colors[1][2]);
+	printf("map table r1: %s, %s, %s\nmap table r2: %s, %s, %s\n", colors[0][0], colors[0][1], colors[0][2], colors[1][0], colors[1][1], colors[1][2]);
 }
 
 /* macros */
@@ -2052,7 +2052,7 @@ void
 updatestatus(void)
 {
 	if (!gettextprop(root, XA_WM_NAME, stext, sizeof(stext)))
-		strcpy(stext, "soon");
+		strcpy(stext, "Milestone 1 | https://youtu.be/dQw4w9WgXcQ");
 	drawbar(selmon);
 }
 
