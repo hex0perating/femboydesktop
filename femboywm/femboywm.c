@@ -2052,7 +2052,9 @@ void
 updatestatus(void)
 {
 	if (!gettextprop(root, XA_WM_NAME, stext, sizeof(stext)))
-		strcpy(stext, "Milestone 1 | https://youtu.be/dQw4w9WgXcQ");
+		strcpy(stext, "FemboyWM@M1> https://youtu.be/dQw4w9WgXcQ");
+		// M1 = Milestone 1, last milestone before release is M5.
+		// https://youtu.be/dQw4w9WgXcQ = Rickroll for trolling
 	drawbar(selmon);
 }
 
