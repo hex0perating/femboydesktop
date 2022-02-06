@@ -22,4 +22,8 @@ echo "Building femboyterm with args: $@"
 cd ../femboyterm
 sudo make clean install "$@"
 
+echo "Building the read config test."
+cd ../readconfigtest
+gcc main.c -o readconfigtest
+
 echo "Done!"

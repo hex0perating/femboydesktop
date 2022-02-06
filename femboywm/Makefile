@@ -3,7 +3,7 @@
 
 include config.mk
 
-SRC = drw.c femboywm.c util.c
+SRC = drw.c femboywm.c util.c fsUtils.c
 OBJ = ${SRC:.c=.o}
 
 all: options femboywm
